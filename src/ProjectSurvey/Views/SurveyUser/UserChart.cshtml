@@ -1,0 +1,48 @@
+﻿@model UserSphere
+
+<div id="chartContainer" style="height: 500px; width: 100%;">
+
+
+    <script type="text/javascript">
+
+        var years = @Html.Raw(ViewBag.DateYear);
+        var months = @Html.Raw(ViewBag.DateMonth);
+        var days = @Html.Raw(ViewBag.DateDay);
+        var levels = @Html.Raw(ViewBag.Levels);
+        var result = [];
+
+        for(var i = 0; i < levels.length; i++) {
+            var date = new Date(years[i],  months[i], days[i]);
+            result.push({ x: date, y: levels[i] });
+        }
+
+            window.onload = function () {
+                var chart = new CanvasJS.Chart("chartContainer",
+                {
+
+                    title: {
+                        text: "Wykres wyników pacjenta"
+                    },
+                    axisX:{
+                        title: "Data",
+                        gridThickness: 2
+                    },
+                    axisY: {
+                        title: "Rezultat"
+                    },
+                    data: [
+                    {
+                        type: "line",
+                        dataPoints:  result,
+                    }
+                    ]
+                });
+                chart.render();
+            }
+    </script>
+</div>
+
+
+
+
+

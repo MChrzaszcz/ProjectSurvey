@@ -1,0 +1,12 @@
+C:\Users\Mack\Documents\Visual Studio 2015\Projects\ProjectSurvey\src\ProjectSurvey\obj\Debug\netcoreapp1.0\ProjectSurvey.csprojResolveAssemblyReference.cache
+C:\Users\Mack\Documents\Visual Studio 2015\Projects\ProjectSurvey\src\ProjectSurvey\obj\Debug\netcoreapp1.0\ProjectSurvey.csproj.CoreCompileInputs.cache
+C:\Users\Mack\Documents\Visual Studio 2015\Projects\ProjectSurvey\src\ProjectSurvey\obj\Debug\netcoreapp1.0\UserSecretsAssemblyInfo.cs
+C:\Users\Mack\Documents\Visual Studio 2015\Projects\ProjectSurvey\src\ProjectSurvey\obj\Debug\netcoreapp1.0\ProjectSurvey.AssemblyInfoInputs.cache
+C:\Users\Mack\Documents\Visual Studio 2015\Projects\ProjectSurvey\src\ProjectSurvey\obj\Debug\netcoreapp1.0\ProjectSurvey.AssemblyInfo.cs
+C:\Users\Mack\Documents\Visual Studio 2015\Projects\ProjectSurvey\src\ProjectSurvey\bin\Debug\netcoreapp1.0\ProjectSurvey.deps.json
+C:\Users\Mack\Documents\Visual Studio 2015\Projects\ProjectSurvey\src\ProjectSurvey\bin\Debug\netcoreapp1.0\ProjectSurvey.runtimeconfig.json
+C:\Users\Mack\Documents\Visual Studio 2015\Projects\ProjectSurvey\src\ProjectSurvey\bin\Debug\netcoreapp1.0\ProjectSurvey.runtimeconfig.dev.json
+C:\Users\Mack\Documents\Visual Studio 2015\Projects\ProjectSurvey\src\ProjectSurvey\bin\Debug\netcoreapp1.0\ProjectSurvey.dll
+C:\Users\Mack\Documents\Visual Studio 2015\Projects\ProjectSurvey\src\ProjectSurvey\bin\Debug\netcoreapp1.0\ProjectSurvey.pdb
+C:\Users\Mack\Documents\Visual Studio 2015\Projects\ProjectSurvey\src\ProjectSurvey\obj\Debug\netcoreapp1.0\ProjectSurvey.dll
+C:\Users\Mack\Documents\Visual Studio 2015\Projects\ProjectSurvey\src\ProjectSurvey\obj\Debug\netcoreapp1.0\ProjectSurvey.pdb

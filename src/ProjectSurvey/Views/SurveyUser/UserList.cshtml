@@ -1,0 +1,76 @@
+﻿@using System.Threading.Tasks
+@using Microsoft.AspNetCore.Authorization
+@using Newtonsoft.Json
+@model IEnumerable<ProjectSurvey.Models.SurveyUser>
+@{
+    ViewData["Title"] = "UserList";
+}
+
+<h2>Lista badanych </h2>
+<br/>
+<br/>
+<br/>
+@*<p>*@
+@*    <a asp-action="Create">Create New</a>*@
+@*</p>*@
+
+<form asp-action="UserList" method="get">
+    <div class="form-actions no-color">
+        <p>
+            <input type="text" name="SearchString" value="@ViewData["currentFilter"]" />
+            <input type="submit" value="Wyszukaj" class="btn btn-default" /> |
+            <a asp-action="UserList"> Cofnij do kompletnej listy</a>
+        </p>
+    </div>
+    <br/>
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                <a asp-action="UserList" asp-route-sortOrder="@ViewBag.NameSortParm">Nazwisko</a>
+            </th>
+            <th>
+                @*                @Html.DisplayNameFor(model => model.FirstName)*@
+                <a>Imie</a>
+            </th>
+            <th>
+                @*                @Html.DisplayNameFor(model => model.FirstName)*@
+                <a>Email</a>
+            </th>
+            <th>
+                <a asp-action="UserList" asp-route-sortOrder="@ViewBag.DateSortParm">Wyniki</a>
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var user in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => user.LastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => user.FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => user.Email)
+                </td>
+                <td>
+                    <p>Niezbadany</p>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,187 @@
+@using Microsoft.ApplicationInsights.Extensibility.Implementation
+@using Microsoft.AspNetCore.Http
+@using Microsoft.AspNetCore.Session
+@model ProjectSurvey.Models.SurveyViewModel.SurveyViewModel
+
+@*@model PaginatedList<Question>*@
+@{
+    ViewData["Title"] = "Index";
+    var questionId = 0;
+    ViewData["endListOfQuestion"] = false;
+    int i = 0;
+    int j = 0;
+    bool isCheckedAnswer = false;
+}
+
+<h2>Kwestionariusz</h2>
+
+<p>
+@*    <a asp-action="Create">Create New</a>*@
+</p>
+<form asp-action="HandleQuestion">
+   
+    <table class="table">
+        <thead>
+        <tr>
+            <th>
+               
+            </th>
+            <th></th>
+        </tr>
+        </thead>
+        @*        @Html.RadioButtonFor(modelItem => modelItem.AnswerId, 1, new { Checked = "checked" })*@
+        <tbody>
+        @foreach (var question in Model.PaginatedList)
+        {
+           
+            <tr>
+                
+                <td>
+                    <br>
+                    <br>
+                    @*                    @Html.DisplayFor(modelItem => question.Title)*@
+                    <p asp-for="@question.Title"><b>@question.Title</b></p>
+
+                    @if (!(bool) ViewData["isPaginationButtonsVisible"])
+                    {
+@*                        @Html.HiddenFor(modelItem => modelItem.RestQuestions[j], question.Id)*@
+                        <input asp-for="@Model.RestQuestionsAbswers[j].questionId" type="hidden" value=@question.Id>
+
+
+                        j += 1;
+                    }
+                    @{ questionId = @question.Id;}
+                    <input id="QuestionId" name="QuestionId" type="hidden" value=@question.Id>
+
+                </td>
+                <td>
+
+                </td>
+            </tr>
+
+            foreach (var answer in question.Answers)
+            {
+
+                <div class="form-group">
+                    <div class="col-md-10">
+                        <tr>
+                            @*                            <div class="col-md-offset-2 col-md-10">*@
+                            <td>
+                                   
+                                @if ((bool) ViewData["isPaginationButtonsVisible"])
+                                {
+                                    if ((int) TempData["checkedAnswerId"] == answer.Id)
+                                    {
+                                        isCheckedAnswer = true;
+                                    }
+                                    else
+                                    {
+                                        isCheckedAnswer = false;
+                                    }
+@*                                        @Html.RadioButtonFor(modelItem => modelItem.AnswerId, answer.Id, new { Checked = "checked"})*@
+                                       
+                                    <input type="radio" value="@answer.Id" name="AnswerId" id="AnswerId" checked="@isCheckedAnswer" />
+                                    <div class=" col-md-6">
+                                        @Html.DisplayFor(modelItem => answer.Title)
+                                    </div>
+                                }
+
+                                else
+                                {
+                                            @*                                          <td><input type="radio" name="@Model.RestQuestions.ElementAt(i).Key" value="@Model.Certificates[i].Value" /></td>*@
+                                            @*                                           <td><input name="@Model.Dictionary.ElementAt(i).Value"/></td>                                           *@
+
+                                            @*                                        @Html.RadioButtonFor(modelItem => modelItem.RestQuestions.ElementAt(answer.Id).Key,question.Id, $"name {@Model.RestQuestions.ElementAt(i).Key}")*@
+
+                                            @*                                           <input type ="radio" id="RestQuestions[answer.Id].Key" name="@question.Id" value="question.Id" />*@
+                                            @*                                  @Html.RadioButtonFor(modelItem => modelItem.AnswerId, answer.Id, $"name {@question.Id}")
+                                                <input id="RestQuestions[answer.Id].Value" name="RestQuestions[answer.Id].Value" type="file" /> *@
+                                    //    @Html.RadioButtonFor(modelItem => modelItem.RestAnswers[i], answer.Id, $"name {@question.Id}")
+
+                                            @*                                        @Html.RadioButtonFor(modelItem => modelItem.AnswerId, answer.Id, $"name {@question.Id}")*@
+
+                                       
+                                    <input type="radio" id="RestQuestions[answer.Id].Key" name="@question.Id" value="question.Id" />
+                                    <div class=" col-md-6">
+                                        @Html.DisplayFor(modelItem => answer.Title)        
+                                    </div>
+                                        
+
+
+                                            @*@Html.RadioButtonFor(modelItem => modelItem.RestQuestionsAbswers[j].answerId, answer.Id) *@
+                                            @*                                        < asp:RadioButtonList ID = "@question.Id" runat = "server" > *@
+                                            @*                                            < asp:ListItem Value = "answer.Id"  name = "@Model.RestQuestionsAbswers[j].answerId" id = "@Model.RestQuestionsAbswers[j].answerId" ></ asp:ListItem > *@
+                                            @*                                        </ asp:RadioButtonList > *@
+                                            @*                                        < asp:RequiredFieldValidator runat = "server" ID = "RFV123" ValidationGroup = "VG1" *@
+                                            @*ControlToValidate = "@question.Id" ErrorMessage = "Prosz? odpowiedzie? na wszystkie pytania" /> *@
+                                            @*
+
+
+                                                < input asp -for= "@Model.RestAnswers[j]"  type = "radio" value = "@answer.Id" /> *@
+                                    //                                             i += 1;
+                                }
+                            </td>
+                            
+                        </tr>
+                    </div>
+                </div>
+            }
+                       
+        }
+        </tbody>
+
+    </table>
+
+    @{
+        //        ViewData["isLastQuestion"] = !Model.PaginatedList.HasNextPage((int) ViewData["page"]);
+        //        if ((bool) ViewData["isLastQuestion"])
+        //        {
+        //            ViewData["nextDisabled"] = "";
+        //            ViewData["endListOfQuestion"] = true;
+        //
+        //        }
+        //        else
+        //        {
+        //            ViewData["isLastQuestion"] = !Model.PaginatedList.HasNextPage((int)ViewData["pageIndex"]);
+        //        }
+
+        TempData["isLastQuestion"] = !Model.PaginatedList.HasNextPage((int)ViewData["pageIndex"]);
+        ViewData["prevDisabled"] = !Model.PaginatedList.HasPreviousPage(((int)ViewData["pageIndex"] - 1)) ? "disabled" : "";
+        //        var prevDisabled = !Model.PaginatedList.HasPreviousPage ? "disabled" : "";
+        //        var nextDisabled = !Model.PaginatedList.HasNextPage ? "" : "";
+        var saveVisible = !Model.PaginatedList.HasNextPage((int)ViewData["pageIndex"]) ? "" : "hide";
+        //        ViewData["page"] = "@(Model.PaginatedList.PageIndex + 1)";
+        ViewData["questionId"] = questionId;
+        //        var restQuestionVisible = (!Model.PaginatedList.HasNextPage && (bool)ViewData["isAllQuestionCompleted"] == false) ? "" : "hide";
+    }
+    @*    <input id="page" name="page" type="hidden" value="@(Model.PaginatedList.PageIndex + 1)">*@
+
+    @if((bool)ViewData["isPaginationButtonsVisible"])
+    {
+        <div class="col-md-offset-2 col-md-10">
+            <input
+                type="submit"
+                value="Next"
+                Name ="Command"
+                class="btn btn-default @ViewData["nextDisabled"] btn"  />
+        </div>
+
+        <div class="col-md-offset-2 col-md-10">
+            <input
+                type="submit"
+                value="Preview"
+                Name ="Command"
+                class="btn btn-default @ViewData["previewDisabled"] btn" />
+        </div>
+    }
+    else
+    {
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit"
+                   value="W"
+                   Name="Command"
+                   class="btn btn-default btn" />
+        </div>
+    }
+  
+</form>
